@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+</head>
+<body>
+  <div style="display: flex">
+    <div>
+      <!--img src="/logo.jpg" style="width: 200px" /-->
+      <canvas tabindex='1' id="gameCanvas" width="800" height="600"></canvas>
+      <h3>Controles</h3>
+      <ul>
+        <li>Setas direcionais: mover</li>
+        <li>Espaço: atirar</li>
+      </ul>
+    </div>
+
+    <div style="margin-left: auto; margin-right: auto">
+      <div id="mensagens">
+      </div>
+    
+      <div id="loginform">
+        <label for="nomeInput">Nome de usuário: </label>
+        <input id="nomeInput"type="text" />
+        <label for="senhaInput">Senha: </label>
+        <input id="senhaInput"type="text" />
+        <button onClick="entrar(event)">Entrar</button>
+      </div>
+
+      <div id="conectado"></div>
+      
+    
+      <h3>Jogadores disponíveis</h3>
+      <div id="mundica" ></div>
+    
+      <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    
+      <script src="/game_client.js"></script>
+    
+      <script type="text/javascript" src="draw.js"></script>
+    
+      <script> draw(); </script>
+    
+      <div>
+        <h3>Escrever mensagem</h3>
+        SocketID: <input id="msgParaSocketId" /><br/>
+        Mensagem: <input id="msgParaTexto" /><br/>
+        <button onClick="enviarMensagemPara(event)">Enviar</button>
+        <button onClick="enviarMensagemGlobal(event)">Enviar Global</button>
+      </div>
+    </div>
+
+    <div id="lobbies" style="display: none">
+      <div id="room" style="display: none">
+        <h3 id="rname">Sala atual: </h3>
+        <p id="namep1">Aguardando...</p>
+        <input type="color" id="colorp1" onchange="getReady()"/><br/>
+        <p id="namep2">Aguardando...</p>
+        <input type="color" id="colorp2" onchange="getReady()"/><br/>
+        <button id="startbtn" onclick="startGame()" disabled>Jogar</button>
+      </div>
+      
+      <h3>Salas</h3>
+      <div id="lobbylist"></div>
+      <input id="createlobby" placeholder="crie uma sala..."/>
+      <button onClick="criarSala(event)">Criar</button>
+    </div>
+  </div>
+
+  
+</body>
+</html>
